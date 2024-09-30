@@ -12,138 +12,201 @@
       overflow: hidden;
       font-family: 'Arial', sans-serif;
       background-color: #ffe5b4;
+      text-align: center;
+    }
+
+    .container {
+      position: relative;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      position: relative;
       flex-direction: column;
     }
 
+    .card {
+      display: none;
+      width: 300px;
+      height: 400px;
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      position: absolute;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      opacity: 0;
+      z-index: 10;
+    }
+
+    .card.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     h1 {
-      font-size: 3rem;
+      font-size: 2.5rem;
       color: #e75480;
-      margin-bottom: 20px;
-      animation: fadeIn 1.5s ease-in-out;
+      animation: fadeIn 1s;
     }
 
     @keyframes fadeIn {
-      0% {
+      from {
         opacity: 0;
         transform: translateY(-20px);
       }
 
-      100% {
+      to {
         opacity: 1;
         transform: translateY(0);
       }
     }
 
-    .card-container {
+    .balloons {
+      position: fixed;
+      bottom: 0;
       display: flex;
       justify-content: space-around;
-      align-items: center;
-      width: 80%;
-      height: 60%;
+      width: 100%;
+      z-index: 5;
     }
 
-    .card {
-      width: 220px;
-      height: 300px;
-      background-color: #ffcccb;
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      transition: transform 0.3s ease;
-      cursor: pointer;
+    .balloon {
+      width: 80px;
+      height: 120px;
+      background-color: rgba(255, 0, 150, 0.7);
+      border-radius: 50% 50% 50% 50%;
+      animation: float 5s ease-in-out infinite;
       position: relative;
-      overflow: hidden;
-      padding: 10px;
-      margin: 10px;
-      text-align: center;
     }
 
-    .card-content {
+    .balloon::after {
+      content: '';
+      position: absolute;
+      bottom: -40px;
+      left: 50%;
+      width: 2px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.6);
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-50px);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    .popup {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      z-index: 20;
       display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
     }
 
-    .card.show .card-content {
-      display: flex;
-      /* Show content when the card is clicked */
+    .popup.active {
+      display: block;
     }
 
-    .sister-img {
-      max-width: 100%;
-      border-radius: 15px;
-      margin-bottom: 10px;
-    }
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .card {
+        width: 90%;
+        height: auto;
+        padding: 10px;
+      }
 
-    .card-title {
-      font-size: 1.5rem;
-      color: #e75480;
-      margin: 10px 0;
-    }
-
-    p {
-      font-size: 0.9rem;
-      color: #4a4a4a;
-      margin: 5px 0;
+      h1 {
+        font-size: 1.8rem;
+      }
     }
   </style>
 </head>
 
 <body>
-  <h1>Happy Birthday Tai!</h1>
-  <div class="card-container">
-    <div class="card" id="card1">
-      <div class="card-title">VADH DIVSACHYA KHUB SUBEKSHA TAI 🥰</div>
-      <div class="card-content">
-        <img src="your_image1.jpg" alt="Sister Image" class="sister-img">
-        <p>Click to reveal!</p>
-      </div>
+  <div class="popup active" id="popup">
+    <h2>🎉 Surprise! 🎉</h2>
+    <p>Click each card one by one to reveal your special wishes!</p>
+    <button onclick="closePopup()">Okay!</button>
+  </div>
+
+  <div class="container">
+    <div class="balloons">
+      <div class="balloon"></div>
+      <div class="balloon"></div>
+      <div class="balloon"></div>
+      <div class="balloon"></div>
     </div>
+
+    <div class="card active" id="card1">
+      <h1>VADH DIVSACHYA KHUB SUBEKSHA TAI 🥰</h1>
+    </div>
+
     <div class="card" id="card2">
-      <div class="card-title">Moments Together 🤗</div>
-      <div class="card-content">
-        <img src="your_image2.jpg" alt="Us Together" class="sister-img">
-        <p>Click to reveal!</p>
-      </div>
+      <h1>Moments Together 🤗</h1>
+      <img src="your_image_1.jpg" alt="Moments Together" style="width: 100%; border-radius: 10px;">
     </div>
+
     <div class="card" id="card3">
-      <div class="card-title">Family Love ❤️</div>
-      <div class="card-content">
-        <p>TUJA AYUSHA KHUB ANANDITA JAV...🌉</p>
-        <p>THANKING FOR ALWAYS KEEPING A SMILE ON OUR FACE. 😊</p>
-        <p>I'M HAPPY ABOUT YOU HAVING AS MY SISTER. SO LUCKY I AM..❣️🤟</p>
-        <p>GOD WILL ALWAYS BE WITH YOU🧚.</p>
-        <p>THIS IS YOUR SPECIAL DAY, ENJOY LOTS!</p>
-      </div>
+      <h1>Your Wishes 💖</h1>
+      <p>TUJA AYUSHA KHUB ANANDITA JAV...🌉</p>
+      <p>THANKING FOR ALWAYS KEEPING A SMILE ON OUR FACE. 😊</p>
+      <p>I'M HAPPY ABOUT YOU HAVING AS MY SISTER. SO LUCKY I AM..❣️🤟</p>
+      <p>GOD WILL ALWAYS BE WITH YOU🧚.</p>
+      <p>THIS IS YOUR SPECIAL DAY, ENJOY LOTS!</p>
+      <p>I WISH YOU THE BEST BIRTHDAY FROM (Baba, Aai, and Me).</p>
+      <p>THANKS FOR BECOMING A PART OF OUR LITTLE LIFE AND MAKING IT MORE FUN WITH MEMORABLE DAYS...❤️</p>
     </div>
+
     <div class="card" id="card4">
-      <div class="card-title">Final Greetings 🎉</div>
-      <div class="card-content">
-        <p>I WISH YOU THE BEST BIRTHDAY FROM (Baba, Aai, and Me).</p>
-        <p>THANKS FOR BECOMING A PART OF OUR LITTLE LIFE AND MAKING IT MORE FUN WITH MEMORABLE DAYS...❤️</p>
-        <audio controls autoplay loop>
-          <source src="your_song.mp3" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
-      </div>
+      <h1>Final Greeting 🎊</h1>
+      <img src="your_image_2.jpg" alt="Final Greeting" style="width: 100%; border-radius: 10px;">
+      <p>Happy Birthday! 🎂</p>
     </div>
   </div>
 
   <script>
-    const cards = document.querySelectorAll('.card');
+    let currentCard = 0;
 
-    cards.forEach(card => {
+    function closePopup() {
+      document.getElementById("popup").classList.remove("active");
+      showCard(currentCard);
+    }
+
+    function showCard(index) {
+      const cards = document.querySelectorAll(".card");
+      cards.forEach(card => card.classList.remove("active"));
+      cards[index].classList.add("active");
+
+      // Balloon animation
+      setTimeout(() => {
+        document.querySelectorAll('.balloon').forEach(balloon => {
+          balloon.style.animation = 'float 5s ease-in-out infinite';
+        });
+      }, 500);
+    }
+
+    document.querySelectorAll('.card').forEach((card, index) => {
       card.addEventListener('click', () => {
-        card.classList.toggle('show');
+        if (currentCard < 3) {
+          currentCard++;
+          showCard(currentCard);
+        } else {
+          alert('You have reached the final card!');
+        }
       });
     });
   </script>
