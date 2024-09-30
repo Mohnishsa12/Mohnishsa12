@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Tai!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+      background-color: #ffe5b4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
+      flex-direction: column;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #e75480;
+      margin-bottom: 20px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 80%;
+      height: 60%;
+    }
+
+    .card {
+      width: 220px;
+      height: 300px;
+      background-color: #ffcccb;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      padding: 10px;
+      margin: 10px;
+      text-align: center;
+    }
+
+    .card-content {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card.show .card-content {
+      display: flex;
+      /* Show content when the card is clicked */
+    }
+
+    .sister-img {
+      max-width: 100%;
+      border-radius: 15px;
+      margin-bottom: 10px;
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+      color: #e75480;
+      margin: 10px 0;
+    }
+
+    p {
+      font-size: 0.9rem;
+      color: #4a4a4a;
+      margin: 5px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Happy Birthday Tai!</h1>
+  <div class="card-container">
+    <div class="card" id="card1">
+      <div class="card-title">VADH DIVSACHYA KHUB SUBEKSHA TAI 🥰</div>
+      <div class="card-content">
+        <img src="your_image1.jpg" alt="Sister Image" class="sister-img">
+        <p>Click to reveal!</p>
+      </div>
+    </div>
+    <div class="card" id="card2">
+      <div class="card-title">Moments Together 🤗</div>
+      <div class="card-content">
+        <img src="your_image2.jpg" alt="Us Together" class="sister-img">
+        <p>Click to reveal!</p>
+      </div>
+    </div>
+    <div class="card" id="card3">
+      <div class="card-title">Family Love ❤️</div>
+      <div class="card-content">
+        <p>TUJA AYUSHA KHUB ANANDITA JAV...🌉</p>
+        <p>THANKING FOR ALWAYS KEEPING A SMILE ON OUR FACE. 😊</p>
+        <p>I'M HAPPY ABOUT YOU HAVING AS MY SISTER. SO LUCKY I AM..❣️🤟</p>
+        <p>GOD WILL ALWAYS BE WITH YOU🧚.</p>
+        <p>THIS IS YOUR SPECIAL DAY, ENJOY LOTS!</p>
+      </div>
+    </div>
+    <div class="card" id="card4">
+      <div class="card-title">Final Greetings 🎉</div>
+      <div class="card-content">
+        <p>I WISH YOU THE BEST BIRTHDAY FROM (Baba, Aai, and Me).</p>
+        <p>THANKS FOR BECOMING A PART OF OUR LITTLE LIFE AND MAKING IT MORE FUN WITH MEMORABLE DAYS...❤️</p>
+        <audio controls autoplay loop>
+          <source src="your_song.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const cards = document.querySelectorAll('.card');
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('show');
+      });
+    });
+  </script>
+</body>
+
+</html>
